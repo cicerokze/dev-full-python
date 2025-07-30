@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+jinja2
+motor
+beanie
+pydantic
+pytest
+pytest-asyncio
+python-dotenv
