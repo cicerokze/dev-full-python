@@ -1,9 +1,8 @@
 fastapi
-uvicorn
 jinja2
+pymongo
 motor
-beanie
+uvicorn
+python-dotenv
 pydantic
 pytest
-pytest-asyncio
-python-dotenv

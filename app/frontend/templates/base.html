@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <title>Order Management</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+        <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+        <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+</head>
+<body>
+    <div id="content" class="footer">{% block content %}{% endblock %}</div>
+    <div id="footer" class="content has-text-centered is-fixed-bottom">
+        {% block footer %}
+        &copy; Copyright 2025 by <a href="https://www.linkedin.com/in/cicerokze">cicerokze</a>.
+        {% endblock %}
+    </div>
+</body>
+</html>
