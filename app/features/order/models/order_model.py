@@ -14,11 +14,11 @@ class OrderModel(BaseModel):
     """
 
     order_id: Optional[PyObjectId] = Field(alias="_id", default=None)
-    customer_name: str 
-    customer_email: EmailStr
-    items: List[ItemModel]
-    datetime: datetime
-    price: float
+    customer_name: str = Field(..., description="Name of the customer placing the order")
+    customer_email: EmailStr = Field(..., description="Email address of the customer")
+    items: List[ItemModel] = Field(..., description="List of items in the order")
+    datetime: datetime = Field(default_factory=datetime.datetime.now, description="Timestamp of when the order was placed") # type: ignore
+    price: float = Field(..., description="Total price of the order")
     model_config = ConfigDict(
         populate_by_name=True,
         arbitrary_types_allowed=True,
