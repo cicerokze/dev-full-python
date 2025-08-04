@@ -1,8 +1,11 @@
 fastapi
 jinja2
+jinja2-fragments
+python-multipart
 pymongo
 motor
 uvicorn
 python-dotenv
 pydantic
+pydantic[email]
 pytest
