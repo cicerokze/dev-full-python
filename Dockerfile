@@ -1,6 +1,6 @@
 FROM python:3.12.1
 
-WORKDIR workspaces/dev-full-python/app
+WORKDIR /workspaces/dev-full-python/app
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
