@@ -1,0 +1,43 @@
+{% extends "home.html" %}
+{% block table %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">Orders List</h1>
+    <p class="subtitle">
+
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Email</th>
+          <th>Order Date</th>
+          <th>Total Items</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+        <tr>
+          <td>{{ order.customer_name }}</td>
+          <td>{{ order.customer_email }}</td>
+          <td>{{ order.order_date.strftime('%Y-%m-%d %H:%M') }}</td>
+          <td>{{ order.items | length }}</td>
+          <td>
+            <a class="button is-small is-info" href="/orders/{{ order._id }}">View</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <nav class="pagination" role="navigation">
+      {% for i in range(1, total_pages + 1) %}
+      <a class="pagination-link {% if page == i %}is-current{% endif %}"
+        hx-get="/orders?page={{ i }}&customer_name={{ filters.customer_name or '' }}&start_date={{ filters.start_date or '' }}&end_date={{ filters.end_date or '' }}">
+        {{ i }}
+      </a>
+      {% endfor %}
+    </nav>
+
+</section>
+{% endblock %}
