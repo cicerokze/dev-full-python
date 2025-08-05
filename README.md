@@ -1,9 +1,13 @@
-# dev-full-python
-Projeto desenvolvido como avaliação para vaga de Desenvolvedor Full Stack Python (Pleno)
+## FastAPI Gerenciador de Pedidos (v1.0.0)
 
-# FastAPI Orders App (v0.1.0)
+Aplicação API desenvolvida com:
+- FastAPI
+- MongoDB
+- Jinja2 SSR
+- Bulma CSS
+- HTMX
 
-## Visão Geral
+## Descrição
 
 Uma aplicação fullstack FastAPI + Jinja2 SSR para cadastro e listagem de pedidos, utilizando MongoDB, Bulma CSS e HTMX.
 
@@ -18,16 +22,15 @@ docker-compose up --build
 ### Sem Docker
 
 1. Instale as dependências:
-    ```bash
-    python -m venv venv
-    source venv/bin/activate
-    pip install -r requirements.txt
-    ```
+```bash
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+```
 2. Inicie o MongoDB (localmente ou via Docker).
 3. Execute a aplicação:
-    ```bash
-    uvicorn app.main:app --reload
-    ```
+```bash
+uvicorn app.main:app --reload
+```
 
 ## Estrutura do Projeto
 
@@ -40,4 +43,10 @@ docker-compose up --build
 
 ## Próximos Passos
 
-- Implementar a feature de cadastro
+- Implementar o Frontend com requisições à API e MongoDB
+
+## Documentação (Swagger)
+
+**GET** http://localhost:8000/docs
+
+![API - Documentação](/docs/order_manager.png)
