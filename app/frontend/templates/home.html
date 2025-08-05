@@ -7,15 +7,15 @@
                 <aside class="menu">
                     <p class="menu-label">Dashboard</p>
                     <ul class="menu-list">
-                        <li><a href="/" class="is-active">Orders</a></li>
+                        <li><a href="/" class="is-active">Pedidos</a></li>
                         <!--
                             <li><a href="#products">Products</a></li>
                             <li><a href="#">Analytics</a></li> 
                         -->
                     </ul>
-                    <p class="menu-label">Quick Actions</p>
+                    <p class="menu-label">Opções</p>
                     <ul class="menu-list">
-                        <li><a href="/order">Create Order</a></li>
+                        <li><a href="/order">Registrar Pedido</a></li>
                         <!-- 
                             <li><a href="#">View Reports</a></li>
                         -->
@@ -26,46 +26,42 @@
             <div class="column">
                 <section class="section">
                     <!-- Filters Section -->
-                    <div class="columns is-mobile">
+                    <!-- <div class="columns is-mobile">
                         <div class="column is-narrow">
-                            <button class="button is-light" hx-get="/" hx-target="#orders-table" hx-params="{'status': 'pending'}">Pending</button>
+                            <button class="button is-light" hx-get="/" hx-target="#orders-table" hx-params="{'status': 'pending'}">Pendente</button>
                         </div>
                         <div class="column is-narrow">
-                            <button class="button is-light" hx-get="/" hx-target="#orders-table" hx-params="{'status': 'completed'}">Completed</button>
+                            <button class="button is-light" hx-get="/" hx-target="#orders-table" hx-params="{'status': 'completed'}">Completo</button>
                         </div>
                         <div class="column is-narrow">
-                            <button class="button is-light" hx-get="/" hx-target="#orders-table" hx-params="{'status': 'cancelled'}">Cancelled</button>
+                            <button class="button is-light" hx-get="/" hx-target="#orders-table" hx-params="{'status': 'cancelled'}">Cancelado</button>
                         </div>
                         <div class="column is-narrow">
-                            <button class="button is-light" hx-get="/" hx-target="#orders-table">All</button>
+                            <button class="button is-light" hx-get="/" hx-target="#orders-table">Todos</button>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Orders Table -->
                     <div id="orders-table">
-                        <h1 class="title">Orders</h1>
+                        <h1 class="title">Pedidos</h1>
                         <table class="table is-striped is-fullwidth">
                             <thead>
                                 <tr>
                                     <th>Order</th>
                                     <th>Customer</th>
                                     <th>Date</th>
-                                    <th>Total</th>
-                                    <th>Status</th>
                                     <th>Items</th>
-                                    <th>Delivery Method</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for order in orders %}
                                 <tr>
-                                    <td>{{ order.order }}</td>
-                                    <td>{{ order.customer }}</td>
+                                    <td>{{ loop.index }}</td>
+                                    <td>{{ order.customer_name }}</td>
                                     <td>{{ order.date }}</td>
-                                    <td>{{ order.total }}</td>
-                                    <td>{{ order.status }}</td>
                                     <td>{{ order.items }}</td>
-                                    <td>{{ order.shipping }}</td>
+                                    <td>{{ order.price }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
