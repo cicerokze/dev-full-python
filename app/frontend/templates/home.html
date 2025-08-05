@@ -26,6 +26,26 @@
             <div class="column">
                 <section class="section">
                     <!-- Filters Section -->
+
+                    <form hx-get="/api/orders" hx-target="#order-list" class="box" hx-trigger="change delay:300ms, submit">
+                        <div class="field is-horizontal">
+                            <div class="field-body">
+                            <div class="field">
+                                <label class="label">Customer Name</label>
+                                <input class="input" type="text" name="customer_name">
+                            </div>
+                            <div class="field">
+                                <label class="label">Start Date</label>
+                                <input class="input" type="date" name="start_date">
+                            </div>
+                            <div class="field">
+                                <label class="label">End Date</label>
+                                <input class="input" type="date" name="end_date">
+                            </div>
+                            </div>
+                        </div>
+                        <button class="button is-link is-light">Search</button>
+                    </form>
                     <!-- <div class="columns is-mobile">
                         <div class="column is-narrow">
                             <button class="button is-light" hx-get="/" hx-target="#orders-table" hx-params="{'status': 'pending'}">Pendente</button>
