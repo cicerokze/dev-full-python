@@ -1,90 +1,108 @@
 {% extends "base.html" %}
 {% block content %}
-    <section class="section">
-        <div class="columns">
-            <div class="column is-one-fifth">
-                <!-- Sidebar Menu -->
-                <aside class="menu">
-                    <p class="menu-label">Dashboard</p>
-                    <ul class="menu-list">
-                        <li><a href="/" class="is-active">Orders</a></li>
-                        <!--
-                            <li><a href="#products">Products</a></li>
-                            <li><a href="#">Analytics</a></li> 
-                        -->
-                    </ul>
-                    <p class="menu-label">Quick Actions</p>
-                    <ul class="menu-list">
-                        <li><a href="/order">Create Order</a></li>
-                        <!-- 
-                            <li><a href="#">View Reports</a></li>
-                        -->
-                    </ul>
-                </aside>
-            </div>
-            
-            <div class="column">
-                <section class="section">
-                    <!-- Filters Section -->
-                    <div class="columns is-mobile">
-                        <div class="column is-narrow">
-                            <button class="button is-light" hx-get="/" hx-target="#orders-table" hx-params="{'status': 'pending'}">Pending</button>
-                        </div>
-                        <div class="column is-narrow">
-                            <button class="button is-light" hx-get="/" hx-target="#orders-table" hx-params="{'status': 'completed'}">Completed</button>
-                        </div>
-                        <div class="column is-narrow">
-                            <button class="button is-light" hx-get="/" hx-target="#orders-table" hx-params="{'status': 'cancelled'}">Cancelled</button>
-                        </div>
-                        <div class="column is-narrow">
-                            <button class="button is-light" hx-get="/" hx-target="#orders-table">All</button>
-                        </div>
-                    </div>
+<section class="section">
+    <div class="columns">
 
-                    <!-- Orders Table -->
-                    <div id="orders-table">
-                        <h1 class="title">Orders</h1>
-                        <table class="table is-striped is-fullwidth">
-                            <thead>
-                                <tr>
-                                    <th>Order</th>
-                                    <th>Customer</th>
-                                    <th>Date</th>
-                                    <th>Total</th>
-                                    <th>Status</th>
-                                    <th>Items</th>
-                                    <th>Delivery Method</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for order in orders %}
-                                <tr>
-                                    <td>{{ order.order }}</td>
-                                    <td>{{ order.customer }}</td>
-                                    <td>{{ order.date }}</td>
-                                    <td>{{ order.total }}</td>
-                                    <td>{{ order.status }}</td>
-                                    <td>{{ order.items }}</td>
-                                    <td>{{ order.shipping }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- Pagination -->
-                    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-                        <a class="pagination-previous" href="#">Previous</a>
-                        <a class="pagination-next" href="#">Next</a>
-                        <ul class="pagination-list">
-                            <li><a class="pagination-link is-current" href="#">1</a></li>
-                            <li><a class="pagination-link" href="#">2</a></li>
-                            <li><a class="pagination-link" href="#">3</a></li>
-                        </ul>
-                    </nav>
-                </section>
-            </div>
+        <div class="column is-one-fifth">
+            <!-- Sidebar Menu -->
+            <aside class="menu">
+                <p class="menu-label">Dashboard</p>
+                <ul class="menu-list">
+                    <li><a href="/" class="is-active">Pedidos</a></li>
+                    <!--
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#">Analytics</a></li> 
+                    -->
+                </ul>
+                <p class="menu-label">Opções</p>
+                <ul class="menu-list">
+                    <li><a href="/order">Registrar Pedido</a></li>
+                    <!-- 
+                        <li><a href="#">View Reports</a></li>
+                    -->
+                </ul>
+            </aside>
         </div>
-        
-    </section>
+
+        <div class="column">
+            <section class="section">
+                <!-- Filters Section -->
+
+                <form hx-get="/api/orders" hx-target="#order-list" class="box" hx-trigger="change delay:300ms, submit">
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+                            <div class="field">
+                                <label class="label">Customer Name</label>
+                                <input class="input" type="text" name="customer_name">
+                            </div>
+                            <div class="field">
+                                <label class="label">Start Date</label>
+                                <input class="input" type="date" name="start_date">
+                            </div>
+                            <div class="field">
+                                <label class="label">End Date</label>
+                                <input class="input" type="date" name="end_date">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="button is-link is-light">Search</button>
+                </form>
+                
+                <!-- <div class="columns is-mobile">
+                    <div class="column is-narrow">
+                        <button class="button is-light" hx-get="/" hx-target="#orders-table" hx-params="{'status': 'pending'}">Pendente</button>
+                    </div>
+                    <div class="column is-narrow">
+                        <button class="button is-light" hx-get="/" hx-target="#orders-table" hx-params="{'status': 'completed'}">Completo</button>
+                    </div>
+                    <div class="column is-narrow">
+                        <button class="button is-light" hx-get="/" hx-target="#orders-table" hx-params="{'status': 'cancelled'}">Cancelado</button>
+                    </div>
+                    <div class="column is-narrow">
+                        <button class="button is-light" hx-get="/" hx-target="#orders-table">Todos</button>
+                    </div>
+                </div> -->
+
+                <!-- Orders Table -->
+                <div id="orders-table">
+                    <h1 class="title">Pedidos</h1>
+                    <table class="table is-striped is-fullwidth">
+                        <thead>
+                            <tr>
+                                <th>Ordem</th>
+                                <th>Cliente</th>
+                                <th>Data</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ order.customer_name }}</td>
+                                <td>{{ order.date }}</td>
+                                <td>{{ order.items }}</td>
+                                <td>{{ order.price }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                    <a class="pagination-previous" href="#">Previous</a>
+                    <a class="pagination-next" href="#">Next</a>
+                    <ul class="pagination-list">
+                        <li><a class="pagination-link is-current" href="#">1</a></li>
+                        <li><a class="pagination-link" href="#">2</a></li>
+                        <li><a class="pagination-link" href="#">3</a></li>
+                    </ul>
+                </nav>
+            </section>
+        </div>
+    </div>
+
+</section>
 {% endblock %}
