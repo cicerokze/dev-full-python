@@ -1,9 +1,11 @@
 fastapi
-uvicorn
 jinja2
+jinja2-fragments
+python-multipart
+pymongo
 motor
-beanie
-pydantic
-pytest
-pytest-asyncio
+uvicorn
 python-dotenv
+pydantic
+pydantic[email]
+pytest

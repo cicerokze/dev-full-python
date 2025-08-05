@@ -1,13 +1,14 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from app.api.main import api_router
-from app.frontend.views import frontend_router
+from app.api import api_router
+from app.frontend.views import view_router
 
 app = FastAPI()
 
-# Mount static files for SSR
+# Monta arquivos estáticos para servir como SSR
 app.mount("/static", StaticFiles(directory="app/frontend/static"), name="static")
 
-# Include routers
+# Rotas da API
 app.include_router(api_router, prefix="/api")
-app.include_router(frontend_router)
+# Rotas do Frontend (views)
+app.include_router(view_router)

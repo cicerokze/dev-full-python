@@ -1,7 +1,7 @@
-from .home import home_router
-from .orders import orders_router
+from .home import view_home_router
+from .orders import view_orders_router
 from fastapi import APIRouter
 
-frontend_router = APIRouter()
-frontend_router.include_router(home_router)
-# frontend_router.include_router(orders_router)
+view_router = APIRouter()
+view_router.include_router(view_home_router)
+view_router.include_router(view_orders_router)
