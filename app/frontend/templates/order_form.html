@@ -1,69 +1,101 @@
 {% extends "base.html" %}
 {% block content %}
-<section class="section">
-  <div class="container">
-    <h1 class="title">Register New Order</h1>
-    <form method="post" action="/api/order-create">
-      <div class="field">
-        <label class="label">Name</label>
-        <input class="input" name="customer_name" required>
-      </div>
-      <div class="field">
-        <label class="label">Email</label>
-        <input class="input" type="email" name="customer_email" required>
-      </div>
-      <!--  <div class="field">
-        <label class="label">Order Date</label>
-        <input class="input" type="datetime-local" name="order_date" required>
-      </div> -->
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Registro de Pedido</h1>
+      <form method="post" action="/api/orders" hx-trigger="submit">
 
-      {%
-        set items = [
-          {"item_id": 1, "name": "Basic T-shirt", "category": "Clothing", "unit_price": 45.90},
-          {"item_id": 2, "name": "Jeans", "category": "Clothing", "unit_price": 129.90},
-          {"item_id": 3, "name": "Sports Shoes", "category": "Footwear", "unit_price": 249.00},
-          {"item_id": 4, "name": "Bluetooth Headphones", "category": "Electronics", "unit_price": 180.50},
-          {"item_id": 5, "name": "Wireless Mouse", "category": "Computers", "unit_price": 75.00},
-          {"item_id": 6, "name": "Mechanical Keyboard", "category": "Computers", "unit_price": 320.00},
-          {"item_id": 7, "name": "24-inch monitor", "category": "Electronics", "unit_price": 899.00},
-          {"item_id": 8, "name": "HD webcam", "category": "Computers", "unit_price": 99.00},
-          {"item_id": 9, "name": "Desktop microphone", "category": "Electronics", "unit_price": 150.00},
-          {"item_id": 10, "name": "Ergonomic office chair", "category": "Furniture", "unit_price": 550.00},
-          {"item_id": 11, "name": "Book (Fiction)", "category": "Books and Stationery", "unit_price": 59.90},
-          {"item_id": 12, "name": "University Notebook", "category": "Books and Stationery", "unit_price": 22.50},
-          {"item_id": 13, "name": "Ballpoint Pen", "category": "Books and Stationery", "unit_price": 3.80},
-          {"item_id": 14, "name": "School Backpack", "category": "Accessories", "unit_price": 85.00},
-          {"item_id": 15, "name": "Thermos", "category": "Household Goods", "unit_price": 65.00},
-          {"item_id": 16, "name": "Electric Coffee Maker", "category": "Appliances", "unit_price": 199.90},
-          {"item_id": 17, "name": "Toaster", "category": "Appliances", "unit_price": 110.00},
-          {"item_id": 18, "name": "Blender", "category": "Appliances", "unit_price": 160.00},
-          {"item_id": 19, "name": "Table Fan", "category": "Appliances", "unit_price": 95.00},
-          {"item_id": 20, "name": "Smartwatch", "category": "Electronics", "unit_price": 650.00},
-        ]
-      %}
-
-      <!-- Dynamically adding items will be enhanced with HTMX later -->
-      <div class="is-flex is-justify-content-space-between">
         <div class="field">
-          <label class="label">Item Name</label>
-          <select class="input" id="items">
-            {% for item in items %}
-            <option value="{{ item.name }}" name="{{ item.name }}" required>{{ item.name }} ({{ item.unit_price }})
-            </option>
-            {% endfor %}
-          </select>
+          <label class="label">Nome</label>
+          <div class="control has-icons-right">
+            <input class="input is-success" type="text" placeholder="Digite seu nome aqui" required>
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+            <span class="icon is-small is-right">
+              <i class="fas fa-check"></i>
+            </span>
+          </div>
+          <p class="help is-success">This username is available</p>
         </div>
-        <div class="field">
-          <label class="label">Quantity</label>
-          <input class="input" type="number" name="quantity" required>
-        </div>
-        <div class="field is-align-content-end mb-3">
-          <button class="button is-primary">Adicionar</button>
-        </div>
-      </div>
 
-      <button class="button is-primary" type="submit">Submit</button>
-    </form>
-  </div>
-</section>
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control has-icons-right">
+            <input class="input is-danger" type="email" placeholder="Digite seu e-mail aqui" required>
+            <span class="icon is-medium is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+            <span class="icon is-medium is-right">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+          </div>
+          <p class="help is-danger">This email is invalid</p>
+        </div>
+
+        {%
+          set items = [
+            {"item_id": 1, "name": "Basic T-shirt", "category": "Clothing", "unit_price": 45.90},
+            {"item_id": 2, "name": "Jeans", "category": "Clothing", "unit_price": 129.90},
+            {"item_id": 3, "name": "Sports Shoes", "category": "Footwear", "unit_price": 249.00},
+            {"item_id": 4, "name": "Bluetooth Headphones", "category": "Electronics", "unit_price": 180.50},
+            {"item_id": 5, "name": "Wireless Mouse", "category": "Computers", "unit_price": 75.00},
+            {"item_id": 6, "name": "Mechanical Keyboard", "category": "Computers", "unit_price": 320.00},
+            {"item_id": 7, "name": "24-inch monitor", "category": "Electronics", "unit_price": 899.00},
+            {"item_id": 8, "name": "HD webcam", "category": "Computers", "unit_price": 99.00},
+            {"item_id": 9, "name": "Desktop microphone", "category": "Electronics", "unit_price": 150.00},
+            {"item_id": 10, "name": "Ergonomic office chair", "category": "Furniture", "unit_price": 550.00},
+            {"item_id": 11, "name": "Book (Fiction)", "category": "Books and Stationery", "unit_price": 59.90},
+            {"item_id": 12, "name": "University Notebook", "category": "Books and Stationery", "unit_price": 22.50},
+            {"item_id": 13, "name": "Ballpoint Pen", "category": "Books and Stationery", "unit_price": 3.80},
+            {"item_id": 14, "name": "School Backpack", "category": "Accessories", "unit_price": 85.00},
+            {"item_id": 15, "name": "Thermos", "category": "Household Goods", "unit_price": 65.00},
+            {"item_id": 16, "name": "Electric Coffee Maker", "category": "Appliances", "unit_price": 199.90},
+            {"item_id": 17, "name": "Toaster", "category": "Appliances", "unit_price": 110.00},
+            {"item_id": 18, "name": "Blender", "category": "Appliances", "unit_price": 160.00},
+            {"item_id": 19, "name": "Table Fan", "category": "Appliances", "unit_price": 95.00},
+            {"item_id": 20, "name": "Smartwatch", "category": "Electronics", "unit_price": 650.00},
+          ]
+        %}
+
+        <!-- Dynamically adding items will be enhanced with HTMX later -->
+        <div class="is-flex is-justify-content-space-between">
+
+          <div class="field">
+            <label class="label">Produto</label>
+            <div class="control">
+              <div class="select">
+                <select class="select" id="items">
+                  {% for item in items %}
+                    <option value="{{ item.name }}" name="{{ item.name }}" required>{{ item.name }} ({{ item.unit_price }})</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Quantity</label>
+            <input class="input" type="number" name="quantity" min="0" required>
+          </div>
+
+          <div class="field is-align-content-end mb-3">
+            <div class="control">
+              <button class="button is-link">Adicionar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-link">Salvar</button>
+          </div>
+          <div class="control">
+            <button class="button is-link is-light">Cancel</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </section>
 {% endblock %}
